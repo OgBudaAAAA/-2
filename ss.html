@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>    <link rel="stylesheet" href="style.css">
+<body>
+   <H1>Coffe Blog</H1>
+
+        <form>
+            <p>название</p>
+           <input  name= title type=" text" id = "name" placeholder="американо">
+<p>сорт</p>
+<select name="type" id="type">
+    <option name= "sort" value="">арабика</option>
+    <option name= "sort"  value="">китайское</option>
+    <option  name= "sort" value="">русское</option>
+    
+    
+    </select>
+<p>крепость обжарки</p>
+<input name = strong value="1" type="radio"><label  for="">крепкая</label>
+<input name= strong  value="2" type="radio"><label for="">средняя</label>
+<input name = strong  value="3" type="radio"><label for="">лёгкое</label>
+<p>картинка</p>
+<input name= image type="url">
+<p>описание</p>
+<textarea name="description" id="messe" cols="30" rows="10"></textarea>
+
+<input type="submit"value="отправить">
+<input  name= cost type=" text" id = "name" placeholder="100">
+        </form>
+
+        <br>
+        <table id="table">
+            <thead>
+                <th>картинка </th> 
+                <th>название</th>
+                <th>сорт</th>
+                <th>крепость</th>
+                <th>стоимость</th>
+
+         </thead>
+         
+         
+        </table>
+      
+</body><script> 
+    const f = document.forms[0]; 
+    let tr = document.getElementById("table"); 
+    let t = tr; 
+    f.addEventListener("submit", (e) => { 
+        e.preventDefault(); 
+        let body = {}; 
+        for (let i = 0; i < f.elements.length; i++) { 
+            let tag = f[i]; 
+            if (tag.name) { 
+                if (tag.type === "radio" && tag.checked) { 
+                    body[tag.name] = tag.value; 
+                } else if (tag.type !== "radio") { 
+                    body[tag.name] = tag.value; 
+                } 
+            } 
+        } 
+        console.log(body); 
+        let html = "<tr>"; 
+        html += `<td><img src="${body.image}" width="50" alt="${body.title}"></td>`; 
+        html += `<td>${body.title || ""}</td>`; 
+        html += `<td>${body.sort || ""}</td>`; 
+        html += `<td>${body.strong || ""}</td>`; 
+        html += `<td>${body.cost || ""}</td>`; 
+        html += `<td>${body.description || ""}</td>`; 
+        html += "</tr>" 
+        t.innerHTML += html; 
+    }) 
+</script>
+</html>
